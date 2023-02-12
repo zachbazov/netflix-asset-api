@@ -13,6 +13,7 @@
     "watch:js--no-hmr": "parcel watch --no-hmr ./public/js/index.js --out-dir ./public/js --public-url /js --out-file bundle.js"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "axios": "^1.3.2",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",

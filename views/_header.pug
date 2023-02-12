@@ -1,0 +1,15 @@
+header.header
+    img#img__header.img__header
+    nav.nav.nav--media
+        a#ref--all-media.nav__el All Media
+    .center
+        img#img-header--logo.img-header--logo(alt='Logo')
+    nav.nav.nav--user
+        if user
+            a#ref--sign-out.nav__el.nav__el--logout Sign Out
+            a.nav__el(href='/settings')
+                img.nav__user-img(src=`/img/system/netflix-logo.png` alt=`Photo of ${user.name}`)
+                span= user.name.split(' ')[0]
+        else
+            a.nav__el(href='/sign-in') Sign in
+            a.nav__el.nav__el--cta(href='#') Sign up

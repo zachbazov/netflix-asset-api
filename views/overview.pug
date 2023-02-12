@@ -1,0 +1,49 @@
+extends base
+
+block content
+    main.main
+        .card-container
+            each m in images
+                .card
+                    .card__header
+                        .card__picture
+                            .card__picture-overlay &nbsp;
+                            - const dataUri = `data:image/jpeg;base64,${m.output.dataUri}`;
+                            img.card__picture-img(src=dataUri)
+                        h3.heading-tertirary
+                            span= m.name
+
+                    .card__details
+                        h4.card__sub-heading= m.path
+                        p.card__text= m.type
+                        .card__data
+                            svg.card__icon
+                                use(xlink:href='/img/icons.svg#icon-map-pin')
+                            span= m.output.dataUri.length
+                        .card__data
+                            svg.card__icon
+                                use(xlink:href='/img/icons.svg#icon-calendar')
+                        .card__data
+                            svg.card__icon
+                                use(xlink:href='/img/icons.svg#icon-flag')
+                        .card__data
+                            svg.card__icon
+                                use(xlink:href='/img/icons.svg#icon-user')
+
+                    .card__footer
+                        p
+                            //- each val in m.genres
+                            //-     span.card__footer-value= `${val}, `
+                            //-     |
+                            //- p.card__ratings
+                            //-     svg.reviews__star(class='svg__padding' fill='white')
+                            //-         use(xlink:href='/img/svg/icons.svg#icon-star', class=`reviews__star--active`)
+                            //-     span.card__footer-value #{m.rating}
+                            //-     |
+                            //- a.btn.btn--green.btn--small(href=`/media/${m.slug}`) Details
+
+        br
+        div.page-control
+            btn#btn--page-control-prev.btn__form.btn__form-black Previous
+            span.current-page= `Page ${page} of ${totalPages}`
+            btn#btn--page-control-next.btn__form.btn__form-black Next
