@@ -13,8 +13,8 @@ import ImageUploader from "../../utils/image-uploader";
 const headerImage = document.getElementById("img__header");
 const logoHeaderImage = document.getElementById("img-header--logo");
 if (headerImage) {
-    requestAsset("system", headerImage, "streams-bg");
-    requestAsset("system", logoHeaderImage, "netflix-logo");
+    requestAsset("systems", headerImage, "streams-bg");
+    requestAsset("systems", logoHeaderImage, "netflix-logo");
 }
 
 const allMediaRef = document.getElementById("ref--all-media");
@@ -30,7 +30,7 @@ if (allMediaRef) {
 
 const footerImage = document.getElementById("img__footer");
 if (footerImage) {
-    requestAsset("system", footerImage, "header-footer-bg");
+    requestAsset("systems", footerImage, "header-footer-bg");
 }
 
 // MARK: - Overview Page
