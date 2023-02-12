@@ -1,21 +1,20 @@
 import "@babel/polyfill";
 import {
-    requestImage,
-    uploadRequest,
-    requestPage,
-    uploadImages,
-} from "./repositories/images/images";
+    requestAsset,
+    requestAssetPage,
+    uploadAssetRequest,
+    uploadAssets,
+} from "./repositories/images/assets";
 import ImageCropper from "../../utils/image-cropper";
 import ImageUploader from "../../utils/image-uploader";
-import { formToJSON } from "axios";
 
 // MARK: - Header View
 
 const headerImage = document.getElementById("img__header");
 const logoHeaderImage = document.getElementById("img-header--logo");
 if (headerImage) {
-    requestImage(headerImage, "streams-bg");
-    requestImage(logoHeaderImage, "netflix-logo");
+    requestAsset("system", headerImage, "streams-bg");
+    requestAsset("system", logoHeaderImage, "netflix-logo");
 }
 
 const allMediaRef = document.getElementById("ref--all-media");
@@ -31,7 +30,7 @@ if (allMediaRef) {
 
 const footerImage = document.getElementById("img__footer");
 if (footerImage) {
-    requestImage(footerImage, "header-footer-bg");
+    requestAsset("system", footerImage, "header-footer-bg");
 }
 
 // MARK: - Overview Page
@@ -50,7 +49,7 @@ if (prevPageRef) {
             currentPage = 1;
         }
         localStorage.setItem("page", currentPage);
-        requestPage(currentPage, 9);
+        requestAssetPage("posters", currentPage, 9);
     });
 }
 if (nextPageRef) {
@@ -58,7 +57,7 @@ if (nextPageRef) {
         e.preventDefault();
         currentPage++;
         localStorage.setItem("page", currentPage);
-        requestPage(currentPage, 9);
+        requestAssetPage("posters", currentPage, 9);
     });
 }
 
@@ -68,20 +67,18 @@ const imageUploadForm = document.querySelector(".form--image-upload");
 const imageUploadInput = document.querySelector(".input--image-upload-p");
 const imageUploadPreviewImage = document.getElementById("preview-img--upload");
 const imageUploadButton = document.querySelector(".btn--image-upload");
+const imageUploadSelector = document.getElementById(
+    "image-upload--select-path"
+);
 const imageUploader = new ImageUploader();
 if (imageUploadButton) {
     imageUploader.updatePreviewImage(imageUploadInput, imageUploadPreviewImage);
-    // imageUploader.executeUpload(
-    //     imageUploadButton,
-    //     imageUploadInput,
-    //     uploadRequest
-    // );
 }
 if (imageUploadForm) {
     imageUploadForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        uploadImages(imageUploadInput.files);
+        uploadAssets(imageUploadSelector.value, imageUploadInput.files);
     });
 }
 
@@ -128,7 +125,7 @@ if (saveCropButton) {
         croppedOutputImage,
         imageCropInput,
         saveCropButton,
-        uploadRequest
+        uploadAssetRequest
     );
 }
 

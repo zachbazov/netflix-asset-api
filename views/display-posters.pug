@@ -1,0 +1,14 @@
+extends base
+
+block content
+    main.main
+        .card-container
+            each displayPoster in displayPosters
+                .card
+                    .card__header
+                        .card__picture
+                            .card__picture-overlay &nbsp;
+                            - const dataUri = `data:image/jpeg;base64,${displayPoster.output.dataUri}`;
+                            img#image--preview-img.card__picture-img(src=dataUri)
+                        h3.heading-tertirary
+                            span #{displayPoster.name}#{displayPoster.type}

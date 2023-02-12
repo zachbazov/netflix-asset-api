@@ -15,7 +15,12 @@ const AppError = require("./utils/AppError");
 const globalErrorHandler = require("./controllers/error-controller");
 
 const viewRouter = require("./routes/view-router");
-const imageRouter = require("./routes/image-router");
+const posterRouter = require("./routes/poster-router");
+const logoRouter = require("./routes/logo-router");
+const displayPosterRouter = require("./routes/display-poster-router");
+const displayLogoRouter = require("./routes/display-logo-router");
+const previewPosterRouter = require("./routes/preview-poster-router");
+const systemRouter = require("./routes/system-router");
 
 const app = express();
 
@@ -178,7 +183,12 @@ app.use((req, res, next) => {
 // MARK: - Route Mounting
 
 app.use("/", viewRouter);
-app.use("/api/v1/images", imageRouter);
+app.use("/api/v1/posters", posterRouter);
+app.use("/api/v1/logos", logoRouter);
+app.use("/api/v1/display-posters", displayPosterRouter);
+app.use("/api/v1/display-logos", displayLogoRouter);
+app.use("/api/v1/preview-posters", previewPosterRouter);
+app.use("/api/v1/systems", systemRouter);
 
 // MARK: - Error Handling Routes
 
